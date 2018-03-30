@@ -1,0 +1,21 @@
+{
+    "name": "voja/master01_backend",
+    "description": "Aplikacija za master rad - backend deo",
+    "type": "project",
+    "require": {
+        "catfan/medoo": "^1.5",
+        "twilio/sdk": "^5.16"
+    },
+    "require-dev": {
+        "twilio/sdk": "^5.16",
+        "catfan/medoo": "^1.5"
+    },
+    "license": "Free",
+    "authors": [
+        {
+            "name": "Vojislav Ristivojevic",
+            "email": "batica@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
