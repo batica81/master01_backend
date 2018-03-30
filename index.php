@@ -39,9 +39,15 @@ $jsondata = array (
 echo json_encode($jsondata);
 
 
-//$pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
+$pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
 
-    // Get a certificate resource from the PEM string.
+$clientcert = openssl_x509_read($pemdata);
+
+
+print_r($pemdata);
+
+
+// Get a certificate resource from the PEM string.
   //  $cert = openssl_x509_read( $pemdata );
 
     // Parse the resource and print out the contents.
