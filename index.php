@@ -44,7 +44,7 @@ $pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
 $clientcert = openssl_x509_read($pemdata);
 
 
-print_r($pemdata);
+//print_r($pemdata);
 
 
 // Get a certificate resource from the PEM string.
