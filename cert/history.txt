@@ -31,6 +31,8 @@ koriscenje ca.conf fajla
 generisanje crl
 
 openssl ca -gencrl -config ca.conf -out crl/ClientCA.crl
+sudo nginx -s reload
+
 
 
 generisanje sertifikata (skripta)
