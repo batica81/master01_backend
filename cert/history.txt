@@ -1,0 +1,44 @@
+
+Kreiranje CA koji ce izdavati (potpisivati) klijentske sertifikate:
+
+openssl genrsa -out ClientCA.key 4096
+openssl req -new -x509 -days 3650 -key ClientCA.key -out ClientCA.crt
+
+
+Generisanje i potpisivanje klijentskog sertifikata:
+
+openssl genrsa -out client01.key 4096
+openssl req -new -key client01.key -out client01.csr
+openssl x509 -req -days 365 -in client01.csr -CA ClientCA.crt -CAkey ClientCA.key -set_serial 01 -out client01.crt
+
+
+Izvoz klijentskog sertifikata u razlicite formate:
+
+openssl pkcs12 -export -clcerts -in client01.crt -inkey client01.key -out client01.p12
+openssl pkcs12 -export -out client01.pfx -inkey client01.key -in client01.crt -certfile ClientCA.crt
+openssl pkcs12 -in client01.p12 -out client01.pem -clcerts
+
+
+Prikaz hash vrednosti klijentskog sertifikata:
+
+openssl x509 -noout -fingerprint -sha1 -inform pem -in client01.pem
+
+
+koriscenje ca.conf fajla
+------------------------
+
+
+generisanje crl
+
+openssl ca -gencrl -config ca.conf -out crl/ClientCA.crl
+
+
+generisanje sertifikata (skripta)
+
+
+openssl req -new -config client.conf -out certs/fred.csr -keyout certs/fred.key
+
+openssl ca -config ca.conf -in certs/fred.csr -out certs/fred.crt -extensions client_ext
+
+openssl pkcs12 -export -clcerts -in certs/fred.crt -inkey certs/fred.key -out certs/fred.p12
+openssl pkcs12 -in certs/fred.p12 -out certs/fred.pem -clcerts
