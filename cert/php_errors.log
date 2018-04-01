@@ -1,0 +1,20 @@
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_URL - assumed 'CURLOPT_URL' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 111
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HEADER - assumed 'CURLOPT_HEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 112
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_RETURNTRANSFER - assumed 'CURLOPT_RETURNTRANSFER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 113
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_INFILESIZE - assumed 'CURLOPT_INFILESIZE' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 114
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 115
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_TIMEOUT - assumed 'CURLOPT_TIMEOUT' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 116
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 120
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 120
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 120
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 120
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_HTTPHEADER - assumed 'CURLOPT_HTTPHEADER' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 124
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_POST - assumed 'CURLOPT_POST' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 137
+[01-Apr-2018 21:43:39 UTC] PHP Notice:  Use of undefined constant CURLOPT_POSTFIELDS - assumed 'CURLOPT_POSTFIELDS' in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 138
+[01-Apr-2018 21:43:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Twilio\Http\curl_init() in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php:32
+Stack trace:
+#0 C:\www\master01_backend\vendor\twilio\sdk\Twilio\Rest\Client.php(207): Twilio\Http\CurlClient->request('POST', 'https://api.twi...', Array, Array, Array, 'AC2971624a5ae4c...', 'df3a3a84f695711...', NULL)
+#1 C:\www\master01_backend\vendor\twilio\sdk\Twilio\Domain.php(69): Twilio\Rest\Client->request('POST', 'https://api.twi...', Array, Array, Array, 'AC2971624a5ae4c...', 'df3a3a84f695711...', NULL)
+#2 C:\www\master01_backend\vendor\twilio\sdk\Twilio\Version.php(63): Twilio\Domain->request('POST', '2010-04-01/Acco...', Array, Array, Array, NULL, NULL, NULL)
+#3 C:\www\master01_backend\vendor\twilio\sdk\Twilio\Version.php(203): Twilio\Version->request('POST', '2010-04-01/Acco...', Array, Array, Array, NULL, NULL, NULL)
+#4 C:\www\master01_backend\vendor\twilio\sdk\Twilio\Rest\Api\V2010\Account\MessageList.php(68): Twilio\Version->create('POST', '/Accounts/AC2 in C:\www\master01_backend\vendor\twilio\sdk\Twilio\Http\CurlClient.php on line 32
