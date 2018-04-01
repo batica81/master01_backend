@@ -63,6 +63,6 @@ $clientcert = openssl_x509_read($pemdata);
 
     // var_dump(openssl_x509_parse($pemdata));
 
- print_r($_SERVER);
+ //print_r($_SERVER);
 
 //hook test 3
