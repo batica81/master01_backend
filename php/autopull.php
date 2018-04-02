@@ -13,5 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 //TODO: hmac check for autopull
-//TODO: npm and gulp tasks after pull
+//TODO: composer, npm and gulp tasks after pull
 

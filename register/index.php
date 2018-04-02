@@ -39,14 +39,21 @@ function rand_num_pass($numchar){
 }
 
 if (isset($_POST) && (!empty($_POST['email'])) ) {
-    $insertStatus = $database->insert('korisnik', [
-        'email' => $_POST['email'],
-        'password' => $_POST['password'],
-        'phone' => $_POST['phone']
+    try {
+        $insertStatus = $database->insert('Korisnik', [
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+            'phone' => $_POST['phone']
 //        'phone' => REAL_PHONE
-    ]);
+        ]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
     $userId = $database->id();
 }
+
+var_dump($_POST);
+var_dump($userId);
 
 if ($userId != 0) {
     $username = $_POST['email'];
@@ -59,7 +66,7 @@ if ($userId != 0) {
     $sha1temp = explode( 'Fingerprint=' , $output  )[1];
     $sha1 = str_replace (':', '', $sha1temp);
 
-    $database->insert('sertifikat', [
+    $database->insert('Sertifikat', [
         'hash' => $sha1,
         'owner' => $userId,
         //todo DEV ONLY !!!!
