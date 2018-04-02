@@ -52,16 +52,16 @@ if (isset($_POST) && (!empty($_POST['email'])) ) {
     $userId = $database->id();
 }
 
-var_dump($_POST);
-var_dump($userId);
-
 if ($userId != 0) {
     $username = $_POST['email'];
     $pin = rand_num_pass(6);
     chdir('../cert');
 
-//    $output = shell_exec('autocert.bat '. $username .' '. $pin);
-    $output = shell_exec('./autocert.sh '. $username .' '. $pin);
+    if (ENV_OS == 'windows') {
+        $output = shell_exec('autocert.bat '. $username .' '. $pin);
+    } else {
+        $output = shell_exec('./autocert.sh '. $username .' '. $pin);
+    }
 
     $sha1temp = explode( 'Fingerprint=' , $output  )[1];
     $sha1 = str_replace (':', '', $sha1temp);

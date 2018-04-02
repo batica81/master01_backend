@@ -44,25 +44,3 @@ $pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
 $clientcert = openssl_x509_read($pemdata);
 
 
-//print_r($pemdata);
-
-
-// Get a certificate resource from the PEM string.
-  //  $cert = openssl_x509_read( $pemdata );
-
-    // Parse the resource and print out the contents.
-  //  $cert_data = openssl_x509_parse( $cert );
-    // array_walk( $cert_data, 'print_element' );
-
-  // fastcgi_param X-SSL-CLIENT-CERT $ssl_client_escaped_cert;
-  // fastcgi_param X-SSL-CLIENT-CERT $ssl_client_cert;
-
-//    print_r($cert);
-  //  print_r($cert_data);
-    //print_r($pemdata);
-
-    // var_dump(openssl_x509_parse($pemdata));
-
- //print_r($_SERVER);
-
-//hook test 3
