@@ -53,8 +53,8 @@ if ($userId != 0) {
     $pin = rand_num_pass(6);
     chdir('../cert');
 
-    $output = shell_exec('autocert.bat '. $username .' '. $pin);
-    //$output = shell_exec('./autocert.sh test3 1234');
+//    $output = shell_exec('autocert.bat '. $username .' '. $pin);
+    $output = shell_exec('./autocert.sh '. $username .' '. $pin);
 
     $sha1temp = explode( 'Fingerprint=' , $output  )[1];
     $sha1 = str_replace (':', '', $sha1temp);
