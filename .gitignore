@@ -2,3 +2,6 @@ vendor/
 .idea/
 
 /register/connectvars.php
+
+/cert/ca/ClientCA/*.pem
+/cert/certs
