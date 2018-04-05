@@ -2,6 +2,7 @@ vendor/
 .idea/
 
 /register/connectvars.php
+/register/tempcert/*.p12
 
 /cert/ca/ClientCA/*.pem
 /cert/certs

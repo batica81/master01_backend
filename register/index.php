@@ -103,7 +103,8 @@ if ($userId != 0) {
     if (ENV_OS == 'windows') {
         $output = shell_exec('autocert.bat '. $email .' '. $pin);
     } else {
-        $output = shell_exec('./autocert.sh '. $email .' '. $pin);
+        $output2 = shell_exec('./autocert.sh '. $email .' '. $pin);
+        copy('../cert/certs/'.$email.'.p12', '../register/tempcert/'.$email.'.p12');
     }
 
     $sha1temp = explode( 'Fingerprint=' , $output  )[1];
@@ -116,14 +117,13 @@ if ($userId != 0) {
         'serial' => $pin
     ]);
 
-    $QRdata = $path .'/cert/certs/' . $email . '.p12';
+    $QRdata = $path .'/tempcert/' . $email . '.p12';
 
 
     //sendSMS($pin);
     //sendEMAIL($email, $pin);
 
     //TODO: dinamicko pripremanje aplikacije
-    //TODO: dinamicki link za aplikaciju
 }
 
 ?>
@@ -169,9 +169,9 @@ if ($userId != 0) {
 <div class="text-center <?php if (!(isset($QRdata))) {echo '-hidden';} ?>">
     <h3>Link za skidanje Android aplikacije Master01</h3>
 <!--    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>-->
-    <a href="../apk/app-debug.apk"><img class="qrcode" src="<?php echo (new QRCode)->render($path .'/apk/app-debug.apk'); ?>" alt=""></a>
+    <a href="apk/app-debug.apk"><img class="qrcode" src="<?php echo (new QRCode)->render($path .'/apk/app-debug.apk'); ?>" alt=""></a>
 
     <h3>Link za skidanje sertifikata</h3>
-    <a href="../cert/certs/<?php if (isset($email)) {echo htmlspecialchars($email);} ?>.p12"><img class="qrcode" src="<?php if (isset($QRdata)) {echo (new QRCode)->render($QRdata);} ?>" alt=""></a>
+    <a href="tempcert/<?php if (isset($email)) {echo htmlspecialchars($email);} ?>.p12"><img class="qrcode" src="<?php if (isset($QRdata)) {echo (new QRCode)->render($QRdata);} ?>" alt=""></a>
 </div>
 </body>

@@ -1,8 +1,9 @@
 body {
-	background-color: lavender;
+	background-color: cadetblue;
 	padding-top: 50px;
 }
 
 .qrcode {
 	width: 300px;
+	background-color: white;
 }
