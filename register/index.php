@@ -103,7 +103,7 @@ if ($userId != 0) {
     if (ENV_OS == 'windows') {
         $output = shell_exec('autocert.bat '. $email .' '. $pin);
     } else {
-        $output2 = shell_exec('./autocert.sh '. $email .' '. $pin);
+        $output = shell_exec('./autocert.sh '. $email .' '. $pin);
         copy('../cert/certs/'.$email.'.p12', '../register/tempcert/'.$email.'.p12');
     }
 
@@ -166,7 +166,7 @@ if ($userId != 0) {
 </div>
 
 
-<div class="text-center <?php if (!(isset($QRdata))) {echo '-hidden';} ?>">
+<div class="text-center <?php if (!(isset($QRdata))) {echo 'hidden';} ?>">
     <h3>Link za skidanje Android aplikacije Master01</h3>
 <!--    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>-->
     <a href="apk/app-debug.apk"><img class="qrcode" src="<?php echo (new QRCode)->render($path .'/apk/app-debug.apk'); ?>" alt=""></a>

@@ -5,4 +5,4 @@ vendor/
 /register/tempcert/*.p12
 
 /cert/ca/ClientCA/*.pem
-/cert/certs
+/cert/certs/*.*

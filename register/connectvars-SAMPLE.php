@@ -1,6 +1,6 @@
 <?php 
 
-// Database parameters
+// Enviroment parameters
 
 define("DB_HOST", "database_ip");
 define("DB_USER", "username");
