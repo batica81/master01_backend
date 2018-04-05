@@ -2,3 +2,7 @@ body {
 	background-color: lavender;
 	padding-top: 50px;
 }
+
+.qrcode {
+	width: 300px;
+}

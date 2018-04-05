@@ -30,6 +30,12 @@ $database = new Medoo([
     'charset' => 'utf8'
 ]);
 
+if (ENV == "dev") {
+    $path = '127.0.0.1/master01_backend';
+} else if (ENV == "prod"){
+    $path = 'master01.duckdns.org';
+}
+
 function rand_num_pass($numchar){
     // pravi random string od $numchar cifara
     $pass = "";
@@ -110,13 +116,12 @@ if ($userId != 0) {
         'serial' => $pin
     ]);
 
-    $QRdata = '../cert/certs/' . $email . '.p12';
+    $QRdata = $path .'/cert/certs/' . $email . '.p12';
 
 
-    sendSMS($pin);
-    sendEMAIL($email, $pin);
+    //sendSMS($pin);
+    //sendEMAIL($email, $pin);
 
-    //TODO: dinamicki link za sertifikat
     //TODO: dinamicko pripremanje aplikacije
     //TODO: dinamicki link za aplikaciju
 }
@@ -161,12 +166,12 @@ if ($userId != 0) {
 </div>
 
 
-<div class="text-center">
+<div class="text-center <?php if (!(isset($QRdata))) {echo '-hidden';} ?>">
     <h3>Link za skidanje Android aplikacije Master01</h3>
-    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>
+<!--    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>-->
+    <a href="../apk/app-debug.apk"><img class="qrcode" src="<?php echo (new QRCode)->render($path .'/apk/app-debug.apk'); ?>" alt=""></a>
 
     <h3>Link za skidanje sertifikata</h3>
-    <a href="../cert/certs/<?php echo htmlspecialchars($email); ?>.p12"><img src="<?php echo (new QRCode)->render($QRdata); ?>" alt=""></a>
-
+    <a href="../cert/certs/<?php if (isset($email)) {echo htmlspecialchars($email);} ?>.p12"><img class="qrcode" src="<?php if (isset($QRdata)) {echo (new QRCode)->render($QRdata);} ?>" alt=""></a>
 </div>
 </body>

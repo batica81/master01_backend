@@ -10,6 +10,7 @@ define("DB_PORT", database_port);
 define("PHP_AUTH_PW", "basic_password");
 
 define("ENV_OS", "windows");
+define("ENV", "dev");
 
 define("REAL_PHONE", "+38163555333");
 define("TWILLIO_SID", "AAAAAFFFFFFF");
