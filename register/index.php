@@ -76,9 +76,6 @@ function sendEMAIL($email, $pin){
     $apiKey = SENDGRID_API_KEY;
     $sg = new \SendGrid($apiKey);
     $response = $sg->client->mail()->send()->post($mail);
-//        echo $response->statusCode();
-//        print_r($response->headers());
-//        echo $response->body();
 }
 
 if (isset($_POST) && (!empty($_POST['email'])) ) {
@@ -118,7 +115,6 @@ if ($userId != 0) {
     ]);
 
     $QRdata = $path .'/tempcert/' . $email . '.p12';
-
 
     //sendSMS($pin);
     //sendEMAIL($email, $pin);
