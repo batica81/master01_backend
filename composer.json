@@ -5,7 +5,8 @@
     "require": {
         "catfan/medoo": "^1.5",
         "twilio/sdk": "^5.16",
-        "sendgrid/sendgrid": "~6.0"
+        "sendgrid/sendgrid": "~6.0",
+        "chillerlan/php-qrcode": "dev-master"
     },
     "require-dev": {
         "twilio/sdk": "^5.16",
