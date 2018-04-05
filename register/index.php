@@ -15,7 +15,7 @@ use Twilio\Rest\Client;
 if (!isset($_SERVER['PHP_AUTH_PW']) || (($_SERVER['PHP_AUTH_PW'] != PHP_AUTH_PW))) {
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: Basic realm="Master01"');
-    exit('<h3>Master01 register</h3>Sorry, you need proper credentials.');
+    exit('<h3>Master01 registracija</h3>Molimo unesite ispravno korisnicko ime i lozinku.');
 }
 
 $userId = 0;
@@ -38,6 +38,42 @@ function rand_num_pass($numchar){
     return $pass;
 }
 
+function sendSMS($pin) {
+    $sid = TWILLIO_SID;
+    $token = TWILLIO_AUTH_TOKEN;
+    try {
+        $client = new Client($sid, $token);
+    } catch (\Twilio\Exceptions\ConfigurationException $e) {
+        echo $e->getMessage();
+    }
+
+    // Use the client to do fun stuff like send text messages!
+    $client->messages->create(
+    // the number you'd like to send the message to
+        REAL_PHONE,
+        array(
+            // A Twilio phone number you purchased at twilio.com/console
+            'from' => TWILLIO_PHONE,
+            // the body of the text message you'd like to send
+            'body' => 'Vas pin za aplikaciju Master01 je: ' . $pin
+        )
+    );
+}
+
+function sendEMAIL($email, $pin){
+    $from = new SendGrid\Email("Master01 Administrator", "admin@master01.duckdns.org");
+    $subject = "PIN kod za aplikaciju Master01";
+    $to = new SendGrid\Email($email, $email);
+    $content = new SendGrid\Content("text/plain", "Vas PIN kod za aplikaciju Master01 je: " . $pin);
+    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+    $apiKey = SENDGRID_API_KEY;
+    $sg = new \SendGrid($apiKey);
+    $response = $sg->client->mail()->send()->post($mail);
+//        echo $response->statusCode();
+//        print_r($response->headers());
+//        echo $response->body();
+}
+
 if (isset($_POST) && (!empty($_POST['email'])) ) {
     try {
         $insertStatus = $database->insert('Korisnik', [
@@ -53,14 +89,14 @@ if (isset($_POST) && (!empty($_POST['email'])) ) {
 }
 
 if ($userId != 0) {
-    $username = $_POST['email'];
+    $email = $_POST['email'];
     $pin = rand_num_pass(6);
     chdir('../cert');
 
     if (ENV_OS == 'windows') {
-        $output = shell_exec('autocert.bat '. $username .' '. $pin);
+        $output = shell_exec('autocert.bat '. $email .' '. $pin);
     } else {
-        $output = shell_exec('./autocert.sh '. $username .' '. $pin);
+        $output = shell_exec('./autocert.sh '. $email .' '. $pin);
     }
 
     $sha1temp = explode( 'Fingerprint=' , $output  )[1];
@@ -73,25 +109,8 @@ if ($userId != 0) {
         'serial' => $pin
     ]);
 
-    $sid = TWILLIO_SID;
-    $token = TWILLIO_AUTH_TOKEN;
-    try {
-        $client = new Client($sid, $token);
-    } catch (\Twilio\Exceptions\ConfigurationException $e) {
-        echo $e->getMessage();
-    }
-
-// Use the client to do fun stuff like send text messages!
-    $client->messages->create(
-    // the number you'd like to send the message to
-        REAL_PHONE,
-        array(
-            // A Twilio phone number you purchased at twilio.com/console
-            'from' => TWILLIO_PHONE,
-            // the body of the text message you'd like to send
-            'body' => 'Vas pin za aplikaciju Master01 je: ' . $pin
-        )
-    );
+    sendSMS($pin);
+    sendEMAIL($email, $pin);
 }
 
 ?>
@@ -135,6 +154,6 @@ if ($userId != 0) {
 
 <div class="text-center">
     <h3>Link za skidanje Android aplikacije Master01</h3>
-    <img src="app_link.png" alt="">
+    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>
 </div>
 </body>
