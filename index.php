@@ -1,6 +1,6 @@
 <?php 
 header('Content-Type: application/json');
-
+date_default_timezone_set('Europe/Belgrade');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -8,7 +8,7 @@ $username = (empty($data["Username"])? "default_username" : $data["Username"]);
 $password = (empty($data["Password"])? "default_password" : $data["Password"]);
 
 $clientcerthash = $_SERVER['X-SSL-CLIENT-CERT-SHA1'];
-
+$today = date("Y-m-d H:i:s");
 
 $jsondata = array (
   0 => 
@@ -16,6 +16,7 @@ $jsondata = array (
     'id' => '3079',
     'username' => $username,
     'password' => $password,
+    'date' => $today,
     'name' => 'Vojislav Ristivojevic',
     'email' => 'batica@gmail.com',
     'client_cert_hash' => $clientcerthash,
@@ -23,9 +24,10 @@ $jsondata = array (
     array (
       'Broj kreditne kartice' => '3787 3449 3671 5000',
       'Broj racuna' => '551-1545661-25',
+      'Stanje' => '32000',
     ),
     'phone' => '38163555333',
-    'website' => 'tor64.duckdns.org',
+    'website' => 'api.master01.duckdns.org',
     'company' => 
     array (
       'name' => 'Code Red',
