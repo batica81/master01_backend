@@ -116,8 +116,8 @@ if ($userId != 0) {
 
     $QRdata = $path .'/tempcert/' . $email . '.p12';
 
-    //sendSMS($pin);
-    //sendEMAIL($email, $pin);
+    sendSMS($pin);
+    sendEMAIL($email, $pin);
 
     //TODO: dinamicko pripremanje aplikacije
 }
