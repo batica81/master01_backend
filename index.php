@@ -47,6 +47,13 @@ $datas2 = $database->select("Stanje", [
 
 $stanje = end($datas2)["stanje"];
 
+$datas3 = $database->select("Sertifikat", [
+    "hash"
+], [
+    "owner" => $user_id
+]);
+$izdatiSertifikat = $datas3[0]["hash"];
+
 
 $jsondata = array (
   0 => 
@@ -77,12 +84,25 @@ $jsondata = array (
 $unathorized = array (
     0 =>
         array (
-            'response' => 'unathorized'
+            'response' => 'Pogresna lozinka'
         ),
 );
 
-if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
+$certMismatch = array (
+    0 =>
+        array (
+            'response' => 'Korisnicki sertifikat se ne slaze sa e-mail adresom.'
+        ),
+);
+
+
+if ($clientcerthash != $izdatiSertifikat) {
+    echo json_encode($certMismatch);
+}
+
+else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
     echo json_encode($jsondata);
+
 } else {
     echo json_encode($unathorized);
 }
