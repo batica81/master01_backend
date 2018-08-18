@@ -38,23 +38,14 @@ $user_status = $datas[0]["status"];
 $user_id = $datas[0]["id"];
 $phone = $datas[0]["phone"];
 
-$datas2 = $database->select("Stanje", [
-    "promena",
-    "stanje"
-], [
-    "korisnik" => $user_id
-]);
-
-$stanje = $datas2[0]["stanje"];
-
-if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
-    echo json_encode($jsondata);
-} else {
-    echo json_encode($unathorized);
-
-}
-
-
+//$datas2 = $database->select("Stanje", [
+//    "promena",
+//    "stanje"
+//], [
+//    "korisnik" => $user_id
+//]);
+//
+//$stanje = $datas2[0]["stanje"];
 
 
 $jsondata = array (
@@ -62,7 +53,6 @@ $jsondata = array (
   array (
     'id' => '3079',
     'username' => $username,
-//    'password' => $password,
     'date' => $today,
     'name' => 'Vojislav Ristivojevic',
     'email' => $username,
@@ -71,7 +61,7 @@ $jsondata = array (
     array (
       'Broj kreditne kartice' => '3787 3449 3671 5000',
       'Broj racuna' => '551-1545661-25',
-      'Stanje' => $stanje,
+      'Stanje' => "333",
     ),
     'phone' => $phone,
     'website' => 'api.master01.duckdns.org',
@@ -91,10 +81,16 @@ $unathorized = array (
         ),
 );
 
+if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
+    echo json_encode($jsondata);
+} else {
+    echo json_encode($unathorized);
+
+}
 
 
-$pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
-
-$clientcert = openssl_x509_read($pemdata);
+//$pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
+//
+//$clientcert = openssl_x509_read($pemdata);
 
 
