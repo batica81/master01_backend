@@ -1,5 +1,5 @@
 <?php 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
@@ -38,20 +38,20 @@ $user_status = $datas[0]["status"];
 $user_id = $datas[0]["id"];
 $phone = $datas[0]["phone"];
 
-//$datas2 = $database->select("Stanje", [
-//    "promena",
-//    "stanje"
-//], [
-//    "korisnik" => $user_id
-//]);
-//
-//$stanje = $datas2[0]["stanje"];
+$datas2 = $database->select("Stanje", [
+    "promena",
+    "stanje"
+], [
+    "korisnik" => $user_id
+]);
+
+$stanje = $datas2[0]["stanje"];
 
 
 $jsondata = array (
   0 => 
   array (
-    'id' => '3079',
+    'id' => $user_id,
     'username' => $username,
     'date' => $today,
     'name' => 'Vojislav Ristivojevic',
@@ -61,7 +61,7 @@ $jsondata = array (
     array (
       'Broj kreditne kartice' => '3787 3449 3671 5000',
       'Broj racuna' => '551-1545661-25',
-      'Stanje' => "333",
+      'Stanje' => $stanje,
     ),
     'phone' => $phone,
     'website' => 'api.master01.duckdns.org',
