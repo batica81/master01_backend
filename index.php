@@ -84,14 +84,16 @@ $jsondata = array (
 $unathorized = array (
     0 =>
         array (
-            'response' => 'Pogresna lozinka'
+            'Greska' => 'Pogresna lozinka'
         ),
 );
 
 $certMismatch = array (
     0 =>
         array (
-            'response' => 'Korisnicki sertifikat se ne slaze sa e-mail adresom.'
+            'Greska:' => 'Korisnicki sertifikat se ne slaze sa e-mail adresom.',
+            'prilozeni' => $clientcerthash,
+            'u bazi:' => $izdatiSertifikat
         ),
 );
 
