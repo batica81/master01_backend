@@ -24,6 +24,29 @@ $database = new Medoo([
     'charset' => 'utf8'
 ]);
 
+$datas = $database->select("Korisnik", [
+    "password"
+], [
+    "email" => "batica+1434@gmail.com"
+]);
+
+$hashed_password = $datas["password"];
+
+echo $hashed_password;
+
+
+if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
+    echo "Password verified!";
+}
+
+
+
+
+
+
+
+
+
 $jsondata = array (
   0 => 
   array (
