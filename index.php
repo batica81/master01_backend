@@ -30,6 +30,8 @@ $datas = $database->select("Korisnik", [
     "email" => "batica+1434@gmail.com"
 ]);
 
+echo $datas;
+
 $hashed_password = $datas["password"];
 
 echo $hashed_password;
@@ -76,7 +78,7 @@ $jsondata = array (
 
 //$jsondata[0]['password'].pop();
 
-echo json_encode($jsondata);
+//echo json_encode($jsondata);
 
 
 $pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
