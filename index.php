@@ -1,5 +1,5 @@
 <?php 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
@@ -25,24 +25,34 @@ $database = new Medoo([
 ]);
 
 $datas = $database->select("Korisnik", [
-    "password"
+    "password",
+    "status",
+    "phone",
+    "id"
 ], [
     "email" => $username
 ]);
 
 $hashed_password = $datas[0]["password"];
+$user_status = $datas[0]["status"];
+$user_id = $datas[0]["id"];
+$phone = $datas[0]["phone"];
 
-echo $hashed_password;
+$datas2 = $database->select("Stanje", [
+    "promena",
+    "stanje"
+], [
+    "korisnik" => $user_id
+]);
 
+$stanje = $datas2[0]["stanje"];
 
 if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
-    echo "Password verified!";
+    echo json_encode($jsondata);
+} else {
+    echo json_encode($unathorized);
+
 }
-
-
-
-
-
 
 
 
@@ -52,18 +62,18 @@ $jsondata = array (
   array (
     'id' => '3079',
     'username' => $username,
-    'password' => $password,
+//    'password' => $password,
     'date' => $today,
     'name' => 'Vojislav Ristivojevic',
-    'email' => 'batica@gmail.com',
+    'email' => $username,
     'client_cert_hash' => $clientcerthash,
     'bank_info' => 
     array (
       'Broj kreditne kartice' => '3787 3449 3671 5000',
       'Broj racuna' => '551-1545661-25',
-      'Stanje' => '32000',
+      'Stanje' => $stanje,
     ),
-    'phone' => '38163555333',
+    'phone' => $phone,
     'website' => 'api.master01.duckdns.org',
     'company' => 
     array (
@@ -74,9 +84,13 @@ $jsondata = array (
   ),
 );
 
-//$jsondata[0]['password'].pop();
+$unathorized = array (
+    0 =>
+        array (
+            'response' => 'unathorized'
+        ),
+);
 
-//echo json_encode($jsondata);
 
 
 $pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
