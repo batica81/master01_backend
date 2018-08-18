@@ -1,5 +1,5 @@
 <?php 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
