@@ -92,8 +92,8 @@ $certMismatch = array (
     0 =>
         array (
             'Greska:' => 'Korisnicki sertifikat se ne slaze sa e-mail adresom.',
-            'prilozeni' => $clientcerthash,
-            'u bazi:' => $izdatiSertifikat
+            'prilozeni' => strtoupper($clientcerthash),
+            'u bazi:' => trim($izdatiSertifikat)
         ),
 );
 
