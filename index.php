@@ -27,10 +27,8 @@ $database = new Medoo([
 $datas = $database->select("Korisnik", [
     "password"
 ], [
-    "email" => "batica+1434@gmail.com"
+    "email" => $username
 ]);
-
-var_dump($datas);
 
 $hashed_password = $datas[0]["password"];
 
