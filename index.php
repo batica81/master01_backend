@@ -45,7 +45,7 @@ $datas2 = $database->select("Stanje", [
     "korisnik" => $user_id
 ]);
 
-$stanje = $datas2[0]["stanje"];
+$stanje = end($datas2)["stanje"];
 
 
 $jsondata = array (
@@ -85,12 +85,8 @@ if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
     echo json_encode($jsondata);
 } else {
     echo json_encode($unathorized);
-
 }
 
 
-//$pemdata = $_SERVER['X-SSL-CLIENT-CERT'];
-//
-//$clientcert = openssl_x509_read($pemdata);
 
 
