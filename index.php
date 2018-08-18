@@ -98,7 +98,7 @@ $certMismatch = array (
 );
 
 
-if (strtoupper(trim($clientcerthash)) != $izdatiSertifikat) {
+if (strtoupper($clientcerthash) != trim($izdatiSertifikat)) {
     echo json_encode($certMismatch);
 }
 
