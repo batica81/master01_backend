@@ -23,3 +23,15 @@ CREATE TABLE Sertifikat (
 ALTER TABLE Poruka ADD CONSTRAINT FKPoruka896416 FOREIGN KEY (sender) REFERENCES Korisnik (id);
 ALTER TABLE Sertifikat ADD CONSTRAINT FKSertifikat559669 FOREIGN KEY (owner) REFERENCES Korisnik (id);
 
+create table Stanje
+(
+	timeCreated datetime default CURRENT_TIMESTAMP null,
+	id int not null
+		primary key,
+	promena int null,
+	stanje int null,
+	korisnik int null,
+	constraint Stanje_Korisnik_id_fk
+		foreign key (korisnik) references Korisnik (id)
+)
+

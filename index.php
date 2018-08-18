@@ -2,6 +2,11 @@
 header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
+require 'register/connectvars.php';
+require 'vendor/autoload.php';
+
+use Medoo\Medoo;
+
 $data = json_decode(file_get_contents('php://input'), true);
 
 $username = (empty($data["Username"])? "default_username" : $data["Username"]);
@@ -9,6 +14,15 @@ $password = (empty($data["Password"])? "default_password" : $data["Password"]);
 
 $clientcerthash = $_SERVER['X-SSL-CLIENT-CERT-SHA1'];
 $today = date("Y-m-d H:i:s");
+
+$database = new Medoo([
+    'database_type' => 'mysql',
+    'database_name' => DB_NAME,
+    'server' => DB_HOST,
+    'username' => DB_USER,
+    'password' => DB_PASSWORD,
+    'charset' => 'utf8'
+]);
 
 $jsondata = array (
   0 => 
@@ -37,6 +51,7 @@ $jsondata = array (
   ),
 );
 
+//$jsondata[0]['password'].pop();
 
 echo json_encode($jsondata);
 
