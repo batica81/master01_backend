@@ -1,5 +1,5 @@
 <?php 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
@@ -30,9 +30,9 @@ $datas = $database->select("Korisnik", [
     "email" => "batica+1434@gmail.com"
 ]);
 
-echo $datas;
+var_dump($datas);
 
-$hashed_password = $datas["password"];
+$hashed_password = $datas[0]["password"];
 
 echo $hashed_password;
 
