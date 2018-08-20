@@ -1,5 +1,5 @@
 <?php 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
@@ -109,9 +109,8 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
 // sha256 hash od "123456"
     $encryption_key = hex2bin("8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92");
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
-    $data = "testtesttesttesttesttesttesttesttesttesttesttesttest";
+    $data = json_encode($jsondata);
     $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key,0 , $iv);
-//    $encrypted = $iv.$encrypted;
     $encrypted = $iv. base64_decode($encrypted);
 //    $parts = explode(':', $encrypted);
 //    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
