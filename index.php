@@ -1,5 +1,5 @@
 <?php 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 date_default_timezone_set('Europe/Belgrade');
 
 require 'register/connectvars.php';
@@ -103,7 +103,26 @@ if (strtoupper($clientcerthash) != trim($izdatiSertifikat)) {
 }
 
 else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
-    echo json_encode($jsondata);
+//    echo json_encode($jsondata);
+
+    define('AES_256_CBC', 'aes-256-cbc');
+// $encryption_key = openssl_random_pseudo_bytes(16);
+// sha256 hash od "123456"
+    $encryption_key = hex2bin("8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92");
+//    echo "key:".$encryption_key;
+//    echo "<br>";
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
+    $data = "test";
+//    echo "Before encryption: $data";
+//    echo "<br>";
+    $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
+//    echo "Encrypted:" .$encrypted;
+//    echo "<br>";
+    $encrypted = $encrypted . ':' . $iv;
+    $parts = explode(':', $encrypted);
+    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
+
+    echo $decrypted;
 
 } else {
     echo json_encode($unathorized);
