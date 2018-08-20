@@ -106,8 +106,6 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
 //    echo json_encode($jsondata);
 
     define('AES_256_CBC', 'aes-256-cbc');
-// sha256 hash od "123456"
-//    $encryption_key = hex2bin("8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92");
     $encryption_key = hex2bin( hash('sha256', $password));
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
     $data = json_encode($jsondata);
@@ -117,7 +115,6 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
 //    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
 
     echo base64_encode($encrypted);
-//    echo $encrypted;
 
 } else {
     echo json_encode($unathorized);
