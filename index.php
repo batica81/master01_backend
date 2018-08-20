@@ -111,12 +111,13 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
     $data = "testtesttesttesttesttesttesttesttesttesttesttesttest";
     $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key,0 , $iv);
-    $encrypted = $iv.$encrypted;
+//    $encrypted = $iv.$encrypted;
+    $encrypted = $iv. base64_decode($encrypted);
 //    $parts = explode(':', $encrypted);
 //    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
 
-//    echo base64_encode($encrypted);
-    echo $encrypted;
+    echo base64_encode($encrypted);
+//    echo $encrypted;
 
 } else {
     echo json_encode($unathorized);
