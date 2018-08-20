@@ -115,7 +115,8 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
 //    $parts = explode(':', $encrypted);
 //    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
 
-    echo base64_encode($encrypted);
+//    echo base64_encode($encrypted);
+    echo $encrypted;
 
 } else {
     echo json_encode($unathorized);
