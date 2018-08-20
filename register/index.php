@@ -171,7 +171,8 @@ if ($userId != 0) {
 
 <div class="text-center <?php if (!(isset($QRdata))) {echo 'hidden';} ?>">
     <h3>Link za skidanje Android aplikacije Master01</h3>
-    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>
+<!--    <a href="https://github.com/batica81/Master01/raw/master/dist/app-debug.apk"><img src="app_link.png" alt=""></a>-->
+    <a href="https://github.com/batica81/Master01/blob/master/dist/app-release.apk?raw=true"><img src="app_link.png" alt=""></a>
 <!--    <a href="apk/app-debug.apk"><img class="qrcode" src="--><?php //echo (new QRCode)->render($path .'/apk/app-debug.apk'); ?><!--" alt=""></a>-->
 
     <h3>Link za skidanje sertifikata</h3>
