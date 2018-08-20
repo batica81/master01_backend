@@ -110,7 +110,7 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
     $encryption_key = hex2bin("8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92");
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
     $data = "testtesttesttesttesttesttesttesttesttesttesttesttest";
-    $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key,OPENSSL_ZERO_PADDING , $iv);
+    $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key,0 , $iv);
     $encrypted = $iv.$encrypted;
 //    $parts = explode(':', $encrypted);
 //    $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
