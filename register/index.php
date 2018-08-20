@@ -13,11 +13,11 @@ use Medoo\Medoo;
 use Twilio\Rest\Client;
 use chillerlan\QRCode\QRCode;
 
-if (!isset($_SERVER['PHP_AUTH_PW']) || (($_SERVER['PHP_AUTH_PW'] != PHP_AUTH_PW))) {
-    header('HTTP/1.1 401 Unauthorized');
-    header('WWW-Authenticate: Basic realm="Master01"');
-    exit('<h3>Master01 registracija</h3>Molimo unesite ispravno korisnicko ime i lozinku.');
-}
+//if (!isset($_SERVER['PHP_AUTH_PW']) || (($_SERVER['PHP_AUTH_PW'] != PHP_AUTH_PW))) {
+//    header('HTTP/1.1 401 Unauthorized');
+//    header('WWW-Authenticate: Basic realm="Master01"');
+//    exit('<h3>Master01 registracija</h3>Molimo unesite ispravno korisnicko ime i lozinku.');
+//}
 
 $userId = 0;
 
@@ -80,8 +80,6 @@ function sendEMAIL($email, $pin){
 
 if (isset($_POST) && (!empty($_POST['email'])) ) {
     try {
-
-
         // salt for bcrypt needs to be 22 base64 characters (but just [./0-9A-Za-z]), see http://php.net/crypt
         $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
 

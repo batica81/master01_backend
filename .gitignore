@@ -6,3 +6,4 @@ vendor/
 
 /cert/ca/ClientCA/*.pem
 /cert/certs/*.*
+/cert/crl/*.*
