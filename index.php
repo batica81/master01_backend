@@ -118,11 +118,12 @@ else if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
     $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
 //    echo "Encrypted:" .$encrypted;
 //    echo "<br>";
-    $encrypted = $encrypted . ':' . $iv;
+//    $encrypted = $encrypted . ':' . $iv;
+    $encrypted = $iv.$encrypted;
     $parts = explode(':', $encrypted);
     $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, $parts[1]);
 
-    echo $decrypted;
+    echo $encrypted;
 
 } else {
     echo json_encode($unathorized);
